@@ -1,0 +1,45 @@
+{
+    "name": "joggapp/laravel-aws-sns",
+    "description": "Laravel package for the SNS events by AWS",
+    "keywords": [
+        "laravel",
+        "package",
+        "aws",
+        "sns",
+        "aws sns",
+        "aws sns events"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Harish Toshniwal",
+            "email": "harish@jogg.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JoggApp\\AwsSns\\": "src"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "~6.0",
+        "illuminate/queue": "~6.0",
+        "aws/aws-php-sns-message-validator": "^1.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JoggApp\\AwsSns\\AwsSnsServiceProvider"
+            ],
+            "aliases":{
+                "AwsSns": "JoggApp\\AwsSns\\AwsSnsFacade"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
