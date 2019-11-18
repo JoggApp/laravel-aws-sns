@@ -5,7 +5,7 @@ namespace JoggApp\AwsSns\Events;
 use Aws\Sns\Message;
 use Illuminate\Queue\SerializesModels;
 
-class SnsEventReceived
+class SnsMessageReceived
 {
     use SerializesModels;
 

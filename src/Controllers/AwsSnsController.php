@@ -5,7 +5,7 @@ namespace JoggApp\AwsSns\Controllers;
 use Aws\Sns\Exception\InvalidSnsMessageException;
 use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;
-use JoggApp\AwsSns\Events\SnsEventReceived;
+use JoggApp\AwsSns\Events\SnsMessageReceived;
 use JoggApp\AwsSns\Events\SnsTopicSubscriptionConfirmed;
 
 class AwsSnsController
@@ -33,7 +33,7 @@ class AwsSnsController
         }
 
         if (isset($message['Type']) && $message['Type'] === 'Notification') {
-            event(new SnsEventReceived($message));
+            event(new SnsMessageReceived($message));
         }
 
         return response('OK', 200);
