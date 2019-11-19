@@ -17,14 +17,10 @@ composer require joggapp/laravel-aws-sns
 
 - The package will automatically register itself.
 
-- You can assign the AwsSnsController to any of your desired routes. The AwsSnsController is a single action controller, so all you have to assign is just the controller class to the route. Eg:
+- You then need to pass the route to `awsSnsWebhooks`:
 
 ```php
-use JoggApp\AwsSns\Controllers\AwsSnsController;
-
-...
-
-Route::post('webhooks/aws/sns', AwsSnsController::class);
+Route::awsSnsWebhooks('route-you-added-in-aws-sns-topic-subscription-console');
 ```
 
 - The package emits 2 events: `SnsTopicSubscriptionConfirmed` & `SnsMessageReceived`.
