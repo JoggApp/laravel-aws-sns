@@ -1,5 +1,8 @@
 All the notable changes to the Laravel Aws Sns package are documented in this file:
 
+## v3.0.1 (06-01-2021)
+- Added PHP 8 support.
+
 ## v3.0.0 (10-09-2020)
 - Added Laravel v8.x support.
 - Dropped Laravel v6.x support.
