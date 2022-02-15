@@ -23,8 +23,8 @@
     },
     "require": {
         "php": "^8.0",
-        "illuminate/support": "9.*",
-        "illuminate/queue": "9.*",
+        "illuminate/support": "^9.0",
+        "illuminate/queue": "^9.0",
         "aws/aws-php-sns-message-validator": "^1.6"
     },
     "extra": {
