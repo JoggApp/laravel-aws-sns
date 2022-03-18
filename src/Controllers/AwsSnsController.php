@@ -5,6 +5,7 @@ namespace JoggApp\AwsSns\Controllers;
 use Aws\Sns\Exception\InvalidSnsMessageException;
 use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;
+use Illuminate\Support\Facades\Cache;
 use JoggApp\AwsSns\Events\SnsMessageReceived;
 use JoggApp\AwsSns\Events\SnsTopicSubscriptionConfirmed;
 
@@ -14,7 +15,11 @@ class AwsSnsController
     {
         $message = Message::fromRawPostData();
 
-        $validator = new MessageValidator();
+        $validator = new MessageValidator(function ($certUrl) {
+            return Cache::rememberForever($certUrl, function ($certUrl) {
+                return file_get_contents($certUrl);
+            });
+        });
 
         try {
             $validator->validate($message);
