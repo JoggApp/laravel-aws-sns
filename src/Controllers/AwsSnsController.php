@@ -18,7 +18,7 @@ class AwsSnsController
 
         $validator = new MessageValidator(function ($certUrl) {
             return Cache::rememberForever($certUrl, function () use ($certUrl) {
-                return Http::get($certUrl);
+                return Http::get($certUrl)->body();
             });
         });
 
