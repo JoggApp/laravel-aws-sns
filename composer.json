@@ -23,9 +23,10 @@
     },
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^9.0",
+        "aws/aws-php-sns-message-validator": "^1.6",
+        "illuminate/http": "^9.0",
         "illuminate/queue": "^9.0",
-        "aws/aws-php-sns-message-validator": "^1.6"
+        "illuminate/support": "^9.0"
     },
     "extra": {
         "laravel": {

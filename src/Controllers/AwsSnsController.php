@@ -6,6 +6,7 @@ use Aws\Sns\Exception\InvalidSnsMessageException;
 use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use JoggApp\AwsSns\Events\SnsMessageReceived;
 use JoggApp\AwsSns\Events\SnsTopicSubscriptionConfirmed;
 
@@ -17,7 +18,7 @@ class AwsSnsController
 
         $validator = new MessageValidator(function ($certUrl) {
             return Cache::rememberForever($certUrl, function () use ($certUrl) {
-                return file_get_contents($certUrl);
+                return Http::get($certUrl);
             });
         });
 
@@ -30,7 +31,7 @@ class AwsSnsController
 
         if (isset($message['Type']) && $message['Type'] === 'SubscriptionConfirmation') {
             // Confirm the subscription by sending a GET request to the SubscribeURL
-            file_get_contents($message['SubscribeURL']);
+            Http::get($message['SubscribeURL']);
 
             event(new SnsTopicSubscriptionConfirmed);
 
