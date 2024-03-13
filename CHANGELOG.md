@@ -1,5 +1,9 @@
 All the notable changes to the Laravel Aws Sns package are documented in this file:
 
+## v7.0.0 (13-03-2024)
+- min php 8.2
+- laravel v11 support
+
 ## v4.0.1 (16-02-2022)
 - improve version constraints
 
