@@ -1,6 +1,6 @@
 All the notable changes to the Laravel Aws Sns package are documented in this file:
 
-## v8.0.0 (20-03-2026)
+## v9.0.0 (20-03-2026)
 - min php 8.3
 - laravel v13 support
 
