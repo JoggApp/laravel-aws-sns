@@ -17,9 +17,15 @@ class AwsSnsController
         $message = Message::fromRawPostData();
 
         $validator = new MessageValidator(function ($certUrl) {
-            return Cache::rememberForever($certUrl, function () use ($certUrl) {
-                return Http::get($certUrl)->body();
-            });
+            // AWS SNS signing certificates rotate, and forever-caching a cert
+            // body means a stale or poisoned entry survives indefinitely. Bound
+            // the cache to 24 hours so we refetch from the (already host-
+            // validated) SigningCertURL regularly.
+            return Cache::remember(
+                'laravel-aws-sns:cert:' . sha1($certUrl),
+                now()->addDay(),
+                fn () => Http::get($certUrl)->body(),
+            );
         });
 
         try {
